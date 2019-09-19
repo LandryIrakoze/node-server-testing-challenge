@@ -19,5 +19,20 @@ describe('Pokemon model', () => {
             expect(pokemon[0].name).toBe('Jigglypuff');
         })
     })
-    
+    describe('update pokemon', () => {
+        it('should remove pokemon in the db', async () => {
+            await pokemonDB.insert({ id: 1, name: 'pikachu' })
+
+            await pokemonDB.update(1, { name: 'bulbasaur' })
+            let pokemon = await db('pokemon');
+            expect(pokemon[0].name).toBe('bulbasaur')
+        })
+        it('should remove pokemon in the db', async () => {
+            await pokemonDB.insert({ id: 1, name: 'pikachu' })
+
+            await pokemonDB.update(1, { name: 'bulbasaur' })
+            let pokemon = await db('pokemon');
+            expect(pokemon[0].id).toEqual(1)
+        })
+    })
 })
